@@ -22,7 +22,8 @@ public class Controller {
 
     @FXML public void onCesarClicked() {
         if(!Objects.equals(cesarInput.getText(), "")) {
-            cesarOutput.setText(Cesar.crypt(cesarInput.getText(),2));
+            Cesar cesar = new Cesar(cesarInput.getText(),2);
+            cesarOutput.setText(cesar.crypt());
         }
 
     }
