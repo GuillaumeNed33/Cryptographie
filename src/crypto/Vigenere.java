@@ -8,23 +8,28 @@ import java.util.Set;
  * Created by Guillaume on 02/03/2017.
  */
 public class Vigenere {
-    public static void main(String args[]) {
-        String message = "chateau de princesse"; //ne prend pas en compte les accents et autre caracteres speciaux
-        String cle = "afezttafezttafeztt";
+    private String msg = null;
+    private String cle = null;
 
-        HashMap<Character, Float> freq = frequence(message); //Map de frequence des lettres
+    public void cryptage() {
+        HashMap<Character, Float> freq = frequence(msg); //Map de frequence des lettres
         // seeContains(freq);
-        String message_crypt = vigenereCrypt(message, cle);
+        String message_crypt = vigenereCrypt(msg, cle);
         String message_decrypt = vigenereDecrypt(message_crypt, cle);
 
-        System.out.println("Message initial : " + message);
+        System.out.println("Message initial : " + msg);
         System.out.println("Clé : " + cle + "\nlongueur cle : " + cleLength(cle, freq));
         System.out.println("IC : " + indiceCoincidence(cle, freq));
         System.out.println("Message Crypté : " + message_crypt);
         System.out.println("Message Décrypté : " + message_decrypt);
     }
 
-    public static void seeContains(HashMap<Character, Float> map) {
+    public Vigenere(String message, String cle) {
+        msg = message;
+        this.cle = cle;
+    }
+
+    private void seeContains(HashMap<Character, Float> map) {
         Set clefs = map.keySet();
         Iterator it = clefs.iterator();
 
@@ -35,7 +40,7 @@ public class Vigenere {
         }
     }
 
-    public static HashMap<Character, Float> frequence(String texte) {
+    private HashMap<Character, Float> frequence(String texte) {
         HashMap<Character, Float> freq = new HashMap<Character, Float>();
         texte = texte.toLowerCase();
 
@@ -61,7 +66,7 @@ public class Vigenere {
         return freq;
     }
 
-    public static String vigenereCrypt(String message, String cle) {
+    private String vigenereCrypt(String message, String cle) {
         message = message.toLowerCase();
         String newMessage=message;
 
@@ -81,7 +86,7 @@ public class Vigenere {
         return newMessage;
     }
 
-    public static String vigenereDecrypt(String message, String cle) {
+    private String vigenereDecrypt(String message, String cle) {
 
         String newMessage = message;
 
@@ -102,7 +107,7 @@ public class Vigenere {
         return newMessage;
     }
 
-    public static float indiceCoincidence(String cle, HashMap<Character, Float> map) {
+    private float indiceCoincidence(String cle, HashMap<Character, Float> map) {
         //Methodes des indices de coïncidence.
         float IC = 0.f;
         for (int i = 97; i < 123; i++) {
@@ -113,7 +118,7 @@ public class Vigenere {
         return IC;
     }
 
-    private static int cleLength(String cle, HashMap<Character, Float> freq) {
+    private int cleLength(String cle, HashMap<Character, Float> freq) {
         int nb=1;
         char first = cle.charAt(0);
         boolean fin = false;
@@ -131,11 +136,11 @@ public class Vigenere {
     }
 
 
-    public static String casserVigenere(String msg) {
+    public String casserVigenere(String msg) {
         return null;
     }
 
-    public static String replaceCharAt(String s, int pos, char c) {
+    private String replaceCharAt(String s, int pos, char c) {
         char [] tab = s.toCharArray();
         tab[pos] = c;
         return new String(tab);
