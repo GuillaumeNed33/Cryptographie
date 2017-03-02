@@ -1,4 +1,4 @@
-package java;
+package crypto;
 
 /**
  * Created by Guillaume on 02/03/2017.
