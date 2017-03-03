@@ -20,24 +20,29 @@ public class RSA {
     private static BigInteger phI;
     private static BigInteger e;
     private static BigInteger d;
-
+    private BigInteger msgStringCrypt = null;
     private String message=null;
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-    public RSA(String msg) {
+
+    public RSA() {
         InitRSA();
         createKeys();
-        message = msg;
     }
 
-    public void cryptage() {
-        BigInteger msgStringCrypt = cryptMessage(new BigInteger(message.getBytes()));
+    public String cryptage() {
+        msgStringCrypt = cryptMessage(new BigInteger(message.getBytes()));
+        return msgStringCrypt.toString();
+
+
+    }
+
+    public String decryptage() {
         BigInteger msgStringDecrypt = decryptMessage(msgStringCrypt);
-        String decoded = new String(msgStringDecrypt.toByteArray());
-    }
-
-    public void decryptage() {
-
+        return new String(msgStringDecrypt.toByteArray());
     }
 
     private ArrayList<byte[]> parseData(BigInteger msg) {
