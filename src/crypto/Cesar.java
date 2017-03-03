@@ -15,7 +15,10 @@ public class Cesar {
         decalage = decal;
     }
 
-    public String crypt() {
+    public String crypt(boolean decrypt) {
+        if(decrypt)
+            decalage = -decalage;
+
         StringBuilder sb = new StringBuilder(msg.length());
         for (char c : msg.toCharArray()) {
             if (c >= 'a' && c <= 'z') {
@@ -38,6 +41,6 @@ public class Cesar {
     }
 
     public String decrypt() {
-        return crypt();
+        return crypt(true);
     }
 }

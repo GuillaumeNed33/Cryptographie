@@ -11,33 +11,9 @@ public class Vigenere {
     private String msg = null;
     private String cle = null;
 
-    public void cryptage() {
-        HashMap<Character, Float> freq = frequence(msg); //Map de frequence des lettres
-        // seeContains(freq);
-        String message_crypt = vigenereCrypt(msg, cle);
-        String message_decrypt = vigenereDecrypt(message_crypt, cle);
-
-        System.out.println("Message initial : " + msg);
-        System.out.println("Clé : " + cle + "\nlongueur cle : " + cleLength(cle, freq));
-        System.out.println("IC : " + indiceCoincidence(cle, freq));
-        System.out.println("Message Crypté : " + message_crypt);
-        System.out.println("Message Décrypté : " + message_decrypt);
-    }
-
     public Vigenere(String message, String cle) {
         msg = message;
         this.cle = cle;
-    }
-
-    private void seeContains(HashMap<Character, Float> map) {
-        Set clefs = map.keySet();
-        Iterator it = clefs.iterator();
-
-        while (it.hasNext()) {
-            Object cle = it.next();
-            Object valeur = map.get(cle);
-            System.out.println("Cle : " + cle + "\nValeur : " + valeur + "\n\n");
-        }
     }
 
     private HashMap<Character, Float> frequence(String texte) {
@@ -66,19 +42,19 @@ public class Vigenere {
         return freq;
     }
 
-    private String vigenereCrypt(String message, String cle) {
-        message = message.toLowerCase();
-        String newMessage=message;
+    public String vigenereCrypt() {
+        msg = msg.toLowerCase();
+        String newMessage=msg;
 
-        for (int j = 0; j < message.length() ; ++j)
+        for (int j = 0; j < msg.length() ; ++j)
         {
-            if ((int)message.charAt(j)!=32)
+            if ((int)msg.charAt(j)!=32)
             {
                 char c;
-                if ((message.charAt(j) + (cle.charAt(j% cle.length()) -96) <= 122))
-                    c = (char)(message.charAt(j) + (cle.charAt(j%cle.length())) -96);
+                if ((msg.charAt(j) + (cle.charAt(j% cle.length()) -96) <= 122))
+                    c = (char)(msg.charAt(j) + (cle.charAt(j%cle.length())) -96);
                 else
-                    c = (char)(message.charAt(j) + ((cle.charAt(j%cle.length())) -96-26));
+                    c = (char)(msg.charAt(j) + ((cle.charAt(j%cle.length())) -96-26));
 
                 newMessage = replaceCharAt(newMessage, j, c);
             }
@@ -86,20 +62,20 @@ public class Vigenere {
         return newMessage;
     }
 
-    private String vigenereDecrypt(String message, String cle) {
+    public String vigenereDecrypt() {
 
-        String newMessage = message;
+        String newMessage = msg;
 
-        for (int j = 0; j < message.length() ; ++j)
+        for (int j = 0; j < msg.length() ; ++j)
         {
-            if ((int)message.charAt(j)!=32)
+            if ((int)msg.charAt(j)!=32)
             {
-                if (message.charAt(j)-cle.charAt(j%cle.length())+96 >= 97) {
-                    char c = (char)(message.charAt(j) - ((cle.charAt(j%cle.length())) -96));
+                if (msg.charAt(j)-cle.charAt(j%cle.length())+96 >= 97) {
+                    char c = (char)(msg.charAt(j) - ((cle.charAt(j%cle.length())) -96));
                     newMessage = replaceCharAt(newMessage, j, c);
                 }
                 else {
-                    char c = (char)(message.charAt(j) - ((cle.charAt(j%cle.length())) -96-26));
+                    char c = (char)(msg.charAt(j) - ((cle.charAt(j%cle.length())) -96-26));
                     newMessage = replaceCharAt(newMessage, j, c);
                 }
             }
