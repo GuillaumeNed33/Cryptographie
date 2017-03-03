@@ -1,6 +1,7 @@
 package crypto;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 
 /**
  * Created by Guillaume on 02/03/2017.
@@ -14,20 +15,20 @@ public class DiffieHellman {
     private static BigInteger gModPowB;
     private static BigInteger cle;
 
-    private static final int SIZE = 256;
+    private static final int bitLength = 512;
 
-    public static void main(String args []) {
-        initHellman();
-    }
 
-    private static void initHellman() {
-        p = new BigInteger("9293363");
-        g = new BigInteger("3488143");
+    public DiffieHellman() {
+        SecureRandom rnd = new SecureRandom();
+        p = BigInteger.probablePrime(bitLength, rnd);
+        g = BigInteger.probablePrime(bitLength, rnd);
         a = new BigInteger("1234567"); //choisi par moi
-
+    }
+    public String calculateKey(BigInteger b) {
         gModPowA =  g.modPow(a,p);
         gModPowB =  new BigInteger("1210796"); //Valeur envoyé par M. Leothaud
         cle = gModPowB.modPow(a,p);
-        System.out.println(cle);
+        return cle.toString();
     }
+
 }
