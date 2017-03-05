@@ -102,6 +102,14 @@ public class RSA {
         d =  e.modInverse(phI); // ed = 1 mod phI
     }
 
+    public static HashMap<BigInteger, BigInteger> getPubKey() {
+        return pubKey;
+    }
+
+    public static BigInteger getPrivKey() {
+        return privKey;
+    }
+
     private void createKeys() {
         pubKey.put(e,n);
         privKey = d;

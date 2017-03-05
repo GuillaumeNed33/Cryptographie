@@ -4,6 +4,7 @@ import crypto.Cesar;
 import crypto.RSA;
 import crypto.Vigenere;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -47,6 +48,14 @@ public class Controller {
     TextArea rsaInput;
     @FXML
     TextArea rsaOutput;
+    @FXML
+    TextField rsaPublicKey_Stanger;
+    @FXML
+    TextField rsaPrivateKey_Stanger;
+    @FXML
+    TextField rsaPublicKey;
+    @FXML
+    TextField rsaPrivateKey;
 
     @FXML public void onCryptRSAClicked() {
         rsa.setMessage(rsaInput.getText());
@@ -56,8 +65,19 @@ public class Controller {
 
     }
 
+    @FXML public void onCryptRSAClickedStranger() {
+        rsa.setMessage(rsaInput.getText());
+        rsaOutput.setText(rsa.cryptage());
+    }
+    @FXML public void onDecryptRSAClickedStranger() {
+
+    }
+
 
     @FXML public void GenerateRSAKeys() {
+        rsaPrivateKey_Stanger.setText(rsa.getPrivKey().toString());
+        rsaPublicKey_Stanger.setText(rsa.getPubKey().toString());
+
     }
 
 

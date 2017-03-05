@@ -13,7 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("app.fxml"));
         primaryStage.setTitle("Crypto");
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, 1500, 400));
+        primaryStage.setScene(new Scene(root, 800, 400));
         primaryStage.show();
     }
 

@@ -111,8 +111,8 @@
          <content>
             <GridPane>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="76.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="652.0" minWidth="10.0" prefWidth="652.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="22.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.0" minWidth="10.0" prefWidth="706.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
@@ -121,28 +121,6 @@
                   <RowConstraints />
               </rowConstraints>
                <children>
-
-                  <!-- <Button mnemonicParsing="false" onMouseClicked="#GenerateRSAKeys" prefHeight="31.0" prefWidth="503.0" text="Générer Clefs" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                       <GridPane.margin>
-                                 <Insets left="10.0" right="10.0" />
-                             </GridPane.margin>
-                         </Button>
-
-                         <Label text="Privé" GridPane.rowIndex="1" />
-                         <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
-                             <GridPane.margin>
-                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                             </GridPane.margin>
-                         </TextField>
-
-                         <Label text="Public" GridPane.rowIndex="2" />
-                         <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
-                             <GridPane.margin>
-                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                             </GridPane.margin>
-                         </TextField>
-      -->
-
                   <Label text="Texte Dérypté" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <TextArea fx:id="rsaInput" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
@@ -150,14 +128,24 @@
                      </GridPane.margin>
                   </TextArea>
 
-                   <Button mnemonicParsing="false" onMouseClicked="#onCryptRSAClicked" prefHeight="31.0" prefWidth="298.0" text="Crypter" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                   <Button mnemonicParsing="false" onMouseClicked="#onCryptRSAClicked" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Crypter avec la clé publique étrangère" GridPane.columnIndex="1" GridPane.rowIndex="2">
                        <GridPane.margin>
                            <Insets left="10.0" right="10.0" />
                        </GridPane.margin>
                    </Button>
-                   <Button mnemonicParsing="false" onMouseClicked="#onDecryptRSAClicked" prefHeight="31.0" prefWidth="320.0" text="Decrypter" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                   <Button mnemonicParsing="false" onMouseClicked="#onDecryptRSAClicked" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Decrypter avec la clé privé étrangère" GridPane.columnIndex="1" GridPane.rowIndex="2">
                        <GridPane.margin>
-                           <Insets left="320.0" right="10.0" />
+                           <Insets left="180.0" right="10.0" />
+                       </GridPane.margin>
+                   </Button>
+                   <Button mnemonicParsing="false" onMouseClicked="#onCryptRSAClickedStranger" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Crypter avec votre clé publique" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                       <GridPane.margin>
+                           <Insets left="360.0" right="10.0" />
+                       </GridPane.margin>
+                   </Button>
+                   <Button mnemonicParsing="false" onMouseClicked="#onDecryptRSAClickedStranger" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Décrypter avec votre clé privée" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                       <GridPane.margin>
+                           <Insets left="550.0" right="10.0" />
                        </GridPane.margin>
                    </Button>
 
@@ -184,11 +172,11 @@
                         <Label text="Clé privée étrangère : " GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <Label layoutX="10.0" layoutY="18.0" text="Votre clé publique : " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                         <Label layoutX="260.0" layoutY="49.0" text="Votre clé privée : " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="252.0" text="Générer Clefs étrangères" GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField layoutX="10.0" layoutY="26.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <TextField layoutX="10.0" layoutY="26.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <TextField layoutX="10.0" layoutY="26.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onMouseClicked="#GenerateRSAKeys" prefHeight="25.0" prefWidth="252.0" text="Générer Clefs étrangères" GridPane.columnIndex="1" />
+                        <TextField fx:id="rsaPrivateKey" layoutX="10.0" layoutY="26.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <TextField fx:id="rsaPublicKey" layoutX="10.0" layoutY="26.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <TextField fx:id="rsaPublicKey_Stanger" layoutX="342.0" layoutY="143.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="rsaPrivateKey_Stanger" layoutX="145.0" layoutY="87.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
 
