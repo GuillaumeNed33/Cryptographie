@@ -128,22 +128,22 @@
                      </GridPane.margin>
                   </TextArea>
 
-                   <Button mnemonicParsing="false" onMouseClicked="#onCryptRSAClicked" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Crypter avec la clé publique étrangère" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                   <Button mnemonicParsing="false" onMouseClicked="#onCryptRSAClickedStranger" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Crypter avec la clé publique étrangère" GridPane.columnIndex="1" GridPane.rowIndex="2">
                        <GridPane.margin>
                            <Insets left="10.0" right="10.0" />
                        </GridPane.margin>
                    </Button>
-                   <Button mnemonicParsing="false" onMouseClicked="#onDecryptRSAClicked" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Decrypter avec la clé privé étrangère" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                   <Button mnemonicParsing="false" onMouseClicked="#onDecryptRSAClickedStranger" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Decrypter avec la clé privé étrangère" GridPane.columnIndex="1" GridPane.rowIndex="2">
                        <GridPane.margin>
                            <Insets left="180.0" right="10.0" />
                        </GridPane.margin>
                    </Button>
-                   <Button mnemonicParsing="false" onMouseClicked="#onCryptRSAClickedStranger" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Crypter avec votre clé publique" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                   <Button mnemonicParsing="false" onMouseClicked="#onCryptRSAClicked" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Crypter avec votre clé publique" GridPane.columnIndex="1" GridPane.rowIndex="2">
                        <GridPane.margin>
                            <Insets left="360.0" right="10.0" />
                        </GridPane.margin>
                    </Button>
-                   <Button mnemonicParsing="false" onMouseClicked="#onDecryptRSAClickedStranger" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Décrypter avec votre clé privée" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                   <Button mnemonicParsing="false" onMouseClicked="#onDecryptRSAClicked" wrapText="true" textAlignment="CENTER" prefHeight="45.0" prefWidth="160.0" text="Décrypter avec votre clé privée" GridPane.columnIndex="1" GridPane.rowIndex="2">
                        <GridPane.margin>
                            <Insets left="550.0" right="10.0" />
                        </GridPane.margin>

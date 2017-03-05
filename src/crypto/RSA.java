@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class RSA {
-    private static final int SIZE = 256; //512bits
+    private static final int SIZE = 1024;
     private static HashMap<BigInteger,BigInteger> pubKey = new HashMap<BigInteger,BigInteger>();
     private static BigInteger privKey;
     private static final BigInteger p = new BigInteger(SIZE, 100, new Random());
@@ -23,26 +23,47 @@ public class RSA {
     private BigInteger msgStringCrypt = null;
     private String message=null;
 
+    private BigInteger yourPrivKey;
+    private HashMap<BigInteger,BigInteger> yourPubKey = new HashMap<BigInteger,BigInteger>();
+    private BigInteger cle;
+
+    public void setYourPrivKey(String b) {this.yourPrivKey = new BigInteger(b);}
+
+    public void setYourPubKey(String b) {
+        cle = new BigInteger(b.split("\\{")[1].split("=")[0]);
+
+        String value = b.split("\\{")[1].split("=")[1].split("}")[0];
+
+        this.yourPubKey.put(cle,new BigInteger(value));
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }
 
+    public void setMessageCrypt(String message) {
+        this.msgStringCrypt = new BigInteger(message);
+    }
 
     public RSA() {
         InitRSA();
         createKeys();
     }
 
-    public String cryptage() {
-        msgStringCrypt = cryptMessage(new BigInteger(message.getBytes()));
-        return msgStringCrypt.toString();
-
-
+    public String cryptage(boolean stranger) {
+        if(stranger) {
+            return cryptMessage(new BigInteger(message.getBytes())).toString();
+        }
+        else
+            return cryptMessage2(new BigInteger(message.getBytes())).toString();
     }
 
-    public String decryptage() {
-        BigInteger msgStringDecrypt = decryptMessage(msgStringCrypt);
-        return new String(msgStringDecrypt.toByteArray());
+    public String decryptage(boolean stranger) {
+        if(stranger) {
+            return new String(decryptMessage(msgStringCrypt).toByteArray());
+        }
+        else
+            return new String(decryptMessage2(msgStringCrypt).toByteArray());
     }
 
     private ArrayList<byte[]> parseData(BigInteger msg) {
@@ -121,5 +142,13 @@ public class RSA {
 
     private BigInteger cryptMessage(BigInteger msg) {
         return msg.modPow(e, n); //msg^e mod n
+    }
+
+    private BigInteger decryptMessage2(BigInteger msg) {
+        return msg.modPow(yourPrivKey, yourPubKey.get(cle)); //msg^d mod n
+    }
+
+    private BigInteger cryptMessage2(BigInteger msg) {
+        return msg.modPow(cle, yourPubKey.get(cle)); //msg^e mod n
     }
 }
