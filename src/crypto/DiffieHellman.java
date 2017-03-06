@@ -11,9 +11,7 @@ public class DiffieHellman {
         PrimeModulus = BigInteger.probablePrime(bitLength,rnd);
         generator = BigInteger.valueOf(rnd.nextInt(Integer.MAX_VALUE));
         alicePrivateNumber = BigInteger.valueOf(rnd.nextInt(Integer.MAX_VALUE));
-        System.out.println("gene" + generator.toString());
         alicePublicNumber = PrimeModulus.modPow(alicePrivateNumber,generator);
-        System.out.println("alice" + alicePublicNumber.toString());
 
     }
 

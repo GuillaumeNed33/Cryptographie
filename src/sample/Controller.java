@@ -24,7 +24,7 @@ public class Controller {
 
     @FXML Label DHAlicePublicKey;
 
-     public Controller() {
+    public Controller() {
         rsa = new RSA();
         dh = new DiffieHellman();
     }
@@ -68,8 +68,6 @@ public class Controller {
 
     @FXML public void onDHCalculateClicked() {
         DHSharedKeyOutput.setText(dh.calculateKey());
-        System.out.println("cc");
-
     }
 
     /*** RSA ***/
@@ -88,23 +86,22 @@ public class Controller {
 
     @FXML public void onCryptRSAClicked() {
         if(!Objects.equals(rsaPublicKey.getText(), "")) {
-         /*   if(!rsaPublicKey.getText().contains("[0-9]+") && !rsaPublicKey.getText().contains("=") && !rsaPublicKey.getText().contains("{") && !rsaPublicKey.getText().contains("}")) {
+            if(!rsaPublicKey.getText().matches("((\\{{1})([0-9]+)(={1})([0-9]+)(}{1}))")) {
                 rsaOutput.setText("Erreur au niveau de votre clé publique. (Syntaxe requise : {key=value})");
-          }
-                      else {*/
+            }
+            else if(!rsaInput.getText().equals("")){
                 rsa.setYourPubKey(rsaPublicKey.getText());
                 rsa.setMessage(rsaInput.getText());
                 rsaOutput.setText(rsa.cryptage(false));
-            //}
+            }
         }
-
     }
     @FXML public void onDecryptRSAClicked() {
         if(!Objects.equals(rsaPrivateKey.getText(), "")) {
             if(!rsaPrivateKey.getText().matches("[0-9]+")) {
                 rsaInput.setText("Erreur au niveau de votre clé privée. (Syntaxe requise : NUMBER)");
             }
-            else {
+            else  if(!rsaOutput.getText().equals("")){
                 rsa.setYourPrivKey(rsaPrivateKey.getText());
                 rsa.setMessageCrypt(rsaOutput.getText());
                 rsaInput.setText(rsa.decryptage(false));
@@ -114,13 +111,13 @@ public class Controller {
     }
     @FXML public void onCryptRSAClickedStranger() {
         if(!Objects.equals(rsaPublicKey_Stanger.getText(), "")) {
-           /* if(!rsaPublicKey_Stanger.getText().matches("[0-9]+") && !rsaPublicKey_Stanger.getText().contains("=") && !rsaPublicKey_Stanger.getText().contains("{") && !rsaPublicKey_Stanger.getText().contains("}")) {
+            if(!rsaPublicKey_Stanger.getText().matches("((\\{{1})([0-9]+)(={1})([0-9]+)(}{1}))")) {
                 rsaOutput.setText("Erreur au niveau de la clé publique étrangère. (Syntaxe requise : {key=value})");
             }
-            else {*/
+            else if(!rsaInput.getText().equals("")){
                 rsa.setMessage(rsaInput.getText());
                 rsaOutput.setText(rsa.cryptage(true));
-           // }
+            }
         }
     }
     @FXML public void onDecryptRSAClickedStranger() {
@@ -128,7 +125,7 @@ public class Controller {
             if(!rsaPrivateKey_Stanger.getText().matches("[0-9]+")) {
                 rsaInput.setText("Erreur au niveau de la clé privée étrangère. (Syntaxe requise : NUMBER)");
             }
-            else {
+            else  if(!rsaOutput.getText().equals("")){
                 rsa.setMessageCrypt(rsaOutput.getText());
                 rsaInput.setText(rsa.decryptage(true));
             }
