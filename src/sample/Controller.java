@@ -1,14 +1,18 @@
 package sample;
 
 import crypto.Cesar;
+import crypto.DiffieHellman;
 import crypto.RSA;
 import crypto.Vigenere;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.Objects;
 
 /**
@@ -16,9 +20,13 @@ import java.util.Objects;
  */
 public class Controller {
     private RSA rsa;
+    private DiffieHellman dh;
 
-    public Controller() {
+    @FXML Label DHAlicePublicKey;
+
+     public Controller() {
         rsa = new RSA();
+        dh = new DiffieHellman();
     }
 
     /*** CESAR ***/
@@ -41,6 +49,27 @@ public class Controller {
             Cesar cesar = new Cesar(cesarOutput.getText(),Integer.parseInt(cesarDecalage.getText()));
             cesarInput.setText(cesar.decrypt());
         }
+    }
+
+    /*** DIFFIE HELLMAN ***/
+    @FXML TextField DHBobKeyInput;
+    @FXML Button dhcalculateBtn;
+    @FXML TextArea DHSharedKeyOutput;
+
+    @FXML public void onDiffieHellmanBobClicked() {
+        DHAlicePublicKey.setText(dh.getAlicePublicNumber().toString());
+        BigInteger key;
+        SecureRandom rnd = new SecureRandom();
+        key = BigInteger.valueOf(rnd.nextInt(Integer.MAX_VALUE));
+        DHBobKeyInput.setText(key.toString());
+        dh.setBobNumber(key);
+        dhcalculateBtn.setDisable(false);
+    }
+
+    @FXML public void onDHCalculateClicked() {
+        DHSharedKeyOutput.setText(dh.calculateKey());
+        System.out.println("cc");
+
     }
 
     /*** RSA ***/

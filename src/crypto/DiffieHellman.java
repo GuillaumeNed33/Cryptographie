@@ -9,9 +9,12 @@ public class DiffieHellman {
     public DiffieHellman() {
         SecureRandom rnd = new SecureRandom();
         PrimeModulus = BigInteger.probablePrime(bitLength,rnd);
-        generator = BigInteger.valueOf(rnd.nextLong());
-        alicePrivateNumber = BigInteger.valueOf(rnd.nextLong());
+        generator = BigInteger.valueOf(rnd.nextInt(Integer.MAX_VALUE));
+        alicePrivateNumber = BigInteger.valueOf(rnd.nextInt(Integer.MAX_VALUE));
+        System.out.println("gene" + generator.toString());
         alicePublicNumber = PrimeModulus.modPow(alicePrivateNumber,generator);
+        System.out.println("alice" + alicePublicNumber.toString());
+
     }
 
     public BigInteger getPrimeModulus() {
@@ -21,6 +24,10 @@ public class DiffieHellman {
     public BigInteger getGenerator() {
         return generator;
     }
+
+    public BigInteger getSecretKey() { return SecretKey;}
+
+    public BigInteger getAlicePublicNumber() { return alicePublicNumber; };
 
     public void setBobNumber(BigInteger b) {
         bobPublicNumber = b;
