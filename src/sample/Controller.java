@@ -87,7 +87,7 @@ public class Controller {
     @FXML public void onCryptRSAClicked() {
         if(!Objects.equals(rsaPublicKey.getText(), "")) {
             if(!rsaPublicKey.getText().matches("((\\{{1})([0-9]+)(={1})([0-9]+)(}{1}))")) {
-                rsaOutput.setText("Erreur au niveau de votre clé publique. (Syntaxe requise : {key=value})");
+                rsaOutput.setText("Erreur au niveau de votre clé publique. (Syntaxe requise : {e=n})");
             }
             else if(!rsaInput.getText().equals("")){
                 rsa.setYourPubKey(rsaPublicKey.getText());
@@ -112,7 +112,7 @@ public class Controller {
     @FXML public void onCryptRSAClickedStranger() {
         if(!Objects.equals(rsaPublicKey_Stanger.getText(), "")) {
             if(!rsaPublicKey_Stanger.getText().matches("((\\{{1})([0-9]+)(={1})([0-9]+)(}{1}))")) {
-                rsaOutput.setText("Erreur au niveau de la clé publique étrangère. (Syntaxe requise : {key=value})");
+                rsaOutput.setText("Erreur au niveau de la clé publique étrangère. (Syntaxe requise : {e=n})");
             }
             else if(!rsaInput.getText().equals("")){
                 rsa.setMessage(rsaInput.getText());
